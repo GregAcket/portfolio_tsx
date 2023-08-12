@@ -2,13 +2,13 @@ import { RefObject, useContext, useRef } from "react"
 import { styled } from "styled-components"
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { ThemeProps } from "../../utils/type"
-import Separator from "./Separator"
+import Wave from "../../assets/Wave"
 
 const SectionAccueil = styled.section<ThemeProps>`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  height: 55vh;
+  height: 65vh;
   padding: 70px 30px 0px;
 `
 
@@ -26,7 +26,7 @@ const StyledH1 = styled.h1<ThemeProps>`
   display: flex;
   font-size: 20px;
   font-weight: 600;
-  width: 345px;
+  width: 298px;
   margin-top: 40px;
   text-transform: uppercase;
   color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
@@ -77,7 +77,7 @@ export default function Accueil() {
         <StyledP ref={paragraph} $isDarkMode={theme === "dark"}></StyledP>
         <StyledH1 ref={title} $isDarkMode={theme === "dark"}></StyledH1>
       </SectionAccueil>
-      <Separator />
+      <Wave />
     </>
   )
 }

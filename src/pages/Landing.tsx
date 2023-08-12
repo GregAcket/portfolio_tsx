@@ -1,7 +1,7 @@
-import Accueil from "../Components/accueil/Accueil"
-import Apropos from "../Components/apropos/Apropos"
-import Contact from "../Components/contact/contact"
-import Projects from "../Components/projects/Projects"
+import Accueil from "../components/accueil/Accueil"
+import Apropos from "../components/apropos/Apropos"
+import Contact from "../components/contact/contact"
+import Projects from "../components/projects/Projects"
 
 export default function Landing() {
   return (

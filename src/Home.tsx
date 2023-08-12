@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom"
-import { Header } from "./Components/header/Header"
+import { Header } from "./components/header/Header"
 import { ThemeProvider } from "./utils/ThemeProvider"
 import GlobalStyle from "./utils/GlobalStyle"
-import Intro from "./Components/intro/Intro"
+import Intro from "./components/intro/Intro"
 import { useRef, useState } from "react"
-import Footer from "./Components/footer/Footer"
-import ScrollToTop from "./Components/Scrolltotop"
+import Footer from "./components/footer/Footer"
+import ScrollToTop from "./components/Scrolltotop"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState<Boolean>(false)
-  const ref = useRef<HTMLElement>(null)
+  const toTopRef = useRef<HTMLElement>(null)
 
   const toTop = () => {
-    if (ref.current) ref.current.scrollIntoView()
+    if (toTopRef.current) toTopRef.current.scrollIntoView()
   }
 
   return (
@@ -23,7 +23,7 @@ export default function Home() {
           <Intro setIsLoaded={setIsLoaded} />
         ) : (
           <>
-            <Header ref={ref} />
+            <Header ref={toTopRef} />
 
             <Outlet />
 

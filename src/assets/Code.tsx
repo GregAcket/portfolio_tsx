@@ -6,16 +6,29 @@ import { ThemeProps } from "../utils/type"
 const Path = styled.path<ThemeProps>`
   fill: ${({ $isDarkMode }) => ($isDarkMode ? "#4d4d4d" : "#ccc")};
 `
+const Svg = styled.svg`
+  position: absolute;
+  bottom: -1650px;
+  right: 300px;
+  width: 65px;
+  height: 65px;
+  transform: rotate(35deg);
+`
 
 export default function Code() {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="800"
+      height="800"
+      viewBox="0 0 32 32"
+    >
       <Path
         $isDarkMode={theme === "dark"}
-        d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+        d="M7.11 23.52l1.42-1.41C5.14 18.72 3.37 17 2.39 16l6.14-6.11a1 1 0 10-1.42-1.42L.29 15.29A1.05 1.05 0 000 16a1 1 0 00.3.71zM31.71 15.29c-.1-.09-6.82-6.82-6.82-6.82l-1.41 1.42c3.38 3.38 5.15 5.16 6.13 6.09l-6.13 6.13a1 1 0 00.7 1.71 1 1 0 00.71-.3l6.82-6.81A1 1 0 0032 16a1 1 0 00-.29-.71zM13.27 27.91a1 1 0 001-.76L19.7 5.33a1 1 0 00-1.94-.48L12.3 26.67a1 1 0 00.7 1.21 1 1 0 00.27.03z"
       ></Path>
-    </svg>
+    </Svg>
   )
 }

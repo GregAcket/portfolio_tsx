@@ -17,7 +17,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Home />}>
       <Route path="/" element={<Landing />} />
 
-      {/*<Route path="/booki" element={<Booki />} />
+      {/*  <Route path="/booki" element={<SingleProject />} />
       <Route path="/ohmyfood" element={<Ohmyfood />} />
       <Route
         path="/ohmyfood/:name"

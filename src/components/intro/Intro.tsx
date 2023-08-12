@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components"
-import { IntroProps } from "../../utils/type"
-import { useEffect } from "react"
+import { IntroProps, ThemeProps } from "../../utils/type"
+import { useContext, useEffect } from "react"
+import { ThemeContext } from "../../utils/ThemeProvider"
 
 const Rotate = keyframes`
   100% {
@@ -48,29 +49,33 @@ const SidesWrapper = styled.div`
   animation: 1000ms ease-in forwards normal ${Rotate};
 `
 
-const Left = styled.div`
+const Left = styled.div<ThemeProps>`
   position: absolute;
   width: 100px;
   height: 100px;
   border-top: 15px solid transparent;
-  border-left: 15px solid black;
+  border-left: 15px solid
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
   border-right: 15px solid transparent;
-  border-bottom: 15px solid black;
+  border-bottom: 15px solid
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
   animation: 400ms ease-in forwards normal 1200ms ${TranslateLeft};
 `
 
-const Right = styled.div`
+const Right = styled.div<ThemeProps>`
   position: relative;
   width: 100px;
   height: 100px;
   border-top: 15px solid transparent;
   border-left: 15px solid transparent;
-  border-right: 15px solid black;
-  border-bottom: 15px solid black;
+  border-right: 15px solid
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
+  border-bottom: 15px solid
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
   transform: rotate(-90deg);
   animation: 400ms ease-in forwards normal 1200ms ${TranslateRight};
 `
-const GreenStuffs = styled.div`
+const GreenStuffsWrapper = styled.div`
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -85,7 +90,7 @@ const BottomG = styled.div`
   width: 0px;
   height: 100px;
   border-top: 15px solid transparent;
-  border-right: 15px solid #004b00;
+  border-right: 15px solid green;
   border-bottom: 15px solid transparent;
   transform: rotate(45deg);
 `
@@ -96,14 +101,14 @@ const MiddleG = styled.div`
   right: 30px;
   width: 70px;
   height: 0px;
-  border-top: 15px solid #004b00;
+  border-top: 15px solid green;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
 `
 
 const Slash = styled.div`
   position: absolute;
-  background: #004b00;
+  background: green;
   top: -70px;
   left: 15px;
   width: 15px;
@@ -118,11 +123,11 @@ const CenterD = styled.div`
   width: 0px;
   height: 92px;
   border-top: 15px solid transparent;
-  border-left: 15px solid #004b00;
+  border-left: 15px solid green;
   border-bottom: 15px solid transparent;
 `
 
-const LeftLayer = styled.div`
+const LeftLayer = styled.div<ThemeProps>`
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -130,10 +135,10 @@ const LeftLayer = styled.div`
   transform: translateX(-100%) translateY(-50%);
   width: 150px;
   height: 150px;
-  background: white;
+  background: ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")};
   animation: 600ms ease-in forwards normal 1200ms ${RevealLeft};
 `
-const RightLayer = styled.div`
+const RightLayer = styled.div<ThemeProps>`
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -141,7 +146,7 @@ const RightLayer = styled.div`
   transform: translateX(0%) translateY(-50%);
   width: 150px;
   height: 150px;
-  background: white;
+  background: ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")};
   animation: 600ms ease-in forwards normal 1200ms ${RevealRight};
 `
 
@@ -150,6 +155,8 @@ const MainWrapper = styled.div`
 `
 
 export default function Intro({ setIsLoaded }: IntroProps) {
+  const { theme } = useContext(ThemeContext)
+
   useEffect(() => {
     const isLoading = () => {
       setTimeout(() => {
@@ -163,17 +170,17 @@ export default function Intro({ setIsLoaded }: IntroProps) {
     <>
       <MainWrapper>
         <SidesWrapper>
-          <Left></Left>
-          <Right></Right>
+          <Left $isDarkMode={theme === "dark"} />
+          <Right $isDarkMode={theme === "dark"} />
         </SidesWrapper>
-        <LeftLayer />
-        <RightLayer />
-        <GreenStuffs>
+        <LeftLayer $isDarkMode={theme === "dark"} />
+        <RightLayer $isDarkMode={theme === "dark"} />
+        <GreenStuffsWrapper>
           <BottomG />
           <MiddleG />
           <Slash />
           <CenterD />
-        </GreenStuffs>
+        </GreenStuffsWrapper>
       </MainWrapper>
     </>
   )

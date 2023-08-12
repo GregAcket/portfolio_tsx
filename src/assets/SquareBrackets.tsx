@@ -9,12 +9,11 @@ const Path = styled.path<ThemeProps>`
 
 const Svg = styled.svg`
   position: absolute;
-  bottom: -475px;
-  left: 70px;
-  width: 70px;
-  height: 70px;
+  bottom: -690px;
+  left: 35px;
+  width: 60px;
+  height: 60px;
   transform: rotate(-25deg);
-  z-index: -1;
 `
 
 export default function SquareBrackets() {
@@ -23,14 +22,14 @@ export default function SquareBrackets() {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width="512"
-      height="512"
-      data-name="Layer 1"
-      viewBox="0 0 24 24"
+      width="800"
+      height="800"
+      fill="#000"
+      viewBox="0 0 256 256"
     >
       <Path
         $isDarkMode={theme === "dark"}
-        d="M2 5v14c0 1.65 1.35 3 3 3h2c.55 0 1 .45 1 1s-.45 1-1 1H5c-2.76 0-5-2.24-5-5V5c0-2.76 2.24-5 5-5h2c.55 0 1 .45 1 1s-.45 1-1 1H5C3.35 2 2 3.35 2 5zm17-5h-2c-.55 0-1 .45-1 1s.45 1 1 1h2c1.65 0 3 1.35 3 3v14c0 1.65-1.35 3-3 3h-2c-.55 0-1 .45-1 1s.45 1 1 1h2c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5z"
+        d="M44 44v168h36a4 4 0 010 8H40a4 4 0 01-4-4V40a4 4 0 014-4h40a4 4 0 010 8zm172-8h-40a4 4 0 000 8h36v168h-36a4 4 0 000 8h40a4 4 0 004-4V40a4 4 0 00-4-4z"
       ></Path>
     </Svg>
   )
