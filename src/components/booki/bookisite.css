@@ -15,7 +15,7 @@
   max-width: 1440px;
   width: 100%;
   align-items: center;
-  margin: 0px 50px 0px 50px;
+  background: white;
 }
 
 .booki_a {
@@ -64,8 +64,8 @@
   max-width: 1440px;
   width: 100%;
   min-height: auto;
-  margin: 20px 50px 50px 50px;
   color: black;
+  background: white;
 }
 
 .booki_top {
@@ -154,7 +154,7 @@
 }
 
 .filtre:nth-child(5) {
-  min-width: 200px;
+  min-width: 255px;
 }
 
 .filtre:nth-child(5) .bold {
@@ -465,8 +465,7 @@
   max-width: 1440px;
   width: 100%;
   background-color: #f2f2f2;
-  height: 200px;
-  margin-top: 10px;
+  min-height: 200px;
   color: black;
 }
 
@@ -491,7 +490,6 @@
 @media all and (max-width: 991px) {
   .booki_header {
     flex-direction: column;
-    margin: 0px 10px 0px 10px;
   }
 
   .booki_nav {
@@ -528,10 +526,6 @@
 
   .booki_form {
     min-width: fit-content;
-  }
-
-  .booki_main {
-    margin: 0px 10px 0px 10px;
   }
 
   .hbg_main_wrapper {
@@ -596,7 +590,6 @@
 
   .booki_footer {
     flex-direction: column;
-    height: auto;
   }
 }
 

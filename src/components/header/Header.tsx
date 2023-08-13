@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 import LogoDev from "./logodev"
 import ThemeSwitcher from "../ThemeSwitcher"
 import { ThemeContext } from "../../utils/ThemeProvider"
-import { forwardRef, useContext, useImperativeHandle, useRef } from "react"
+import { useContext } from "react"
 import { ThemeProps } from "../../utils/type"
 
 const MainHeader = styled.header`
@@ -88,17 +88,8 @@ const Li = styled.li<ThemeProps>`
   }
 `
 
-export const Header = forwardRef(function Header({}, ref) {
+export default function Header() {
   const { theme } = useContext(ThemeContext)
-  const brandRef = useRef<HTMLParagraphElement>(null)
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollIntoView() {
-        if (brandRef.current) brandRef.current.scrollIntoView()
-      },
-    }
-  })
 
   const Links = [
     {
@@ -135,9 +126,7 @@ export const Header = forwardRef(function Header({}, ref) {
               <LogoDev />
             </BrandId>
           </Link>
-          <BrandName $isDarkMode={theme === "dark"} ref={brandRef}>
-            Greg_Dev
-          </BrandName>
+          <BrandName $isDarkMode={theme === "dark"}>Greg_Dev</BrandName>
           <ThemeSwitcher />
         </TopDiv>
         <Nav>
@@ -146,4 +135,4 @@ export const Header = forwardRef(function Header({}, ref) {
       </MainHeader>
     </>
   )
-})
+}

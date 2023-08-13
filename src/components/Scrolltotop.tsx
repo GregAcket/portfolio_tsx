@@ -1,6 +1,9 @@
 import { styled } from "styled-components"
 
 const ToTop = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   font-size: 20px;
   position: fixed;
@@ -19,11 +22,17 @@ const ToTop = styled.button`
     opacity: 1;
   }
 `
+function ScrollToTopOnPageChange() {
+  window.scrollTo(0, 0)
+}
 
-export default function ScrollToTop({ toTop }: { toTop: () => void }) {
+export default function ScrollToTop() {
   return (
     <>
-      <ToTop onClick={toTop} aria-label="Retour en haut de page">
+      <ToTop
+        onClick={ScrollToTopOnPageChange}
+        aria-label="Retour en haut de page"
+      >
         ^
       </ToTop>
     </>

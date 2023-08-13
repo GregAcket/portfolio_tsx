@@ -1,19 +1,16 @@
+import { useState } from "react"
 import { Outlet } from "react-router-dom"
-import { Header } from "./components/header/Header"
+
 import { ThemeProvider } from "./utils/ThemeProvider"
 import GlobalStyle from "./utils/GlobalStyle"
+
+import Header from "./components/header/Header"
 import Intro from "./components/intro/Intro"
-import { useRef, useState } from "react"
 import Footer from "./components/footer/Footer"
 import ScrollToTop from "./components/Scrolltotop"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState<Boolean>(false)
-  const toTopRef = useRef<HTMLElement>(null)
-
-  const toTop = () => {
-    if (toTopRef.current) toTopRef.current.scrollIntoView()
-  }
 
   return (
     <>
@@ -23,12 +20,10 @@ export default function Home() {
           <Intro setIsLoaded={setIsLoaded} />
         ) : (
           <>
-            <Header ref={toTopRef} />
-
+            <Header />
             <Outlet />
-
             <Footer />
-            <ScrollToTop toTop={toTop} />
+            <ScrollToTop />
           </>
         )}
       </ThemeProvider>
