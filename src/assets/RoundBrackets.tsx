@@ -8,9 +8,9 @@ const Path = styled.path<ThemeProps>`
 `
 
 const Svg = styled.svg`
-  position: relative;
-  top: -25px;
-  right: -230px;
+  position: absolute;
+  bottom: -2985px;
+  right: 20px;
   width: 65px;
   height: 65px;
   transform: rotate(-45deg);

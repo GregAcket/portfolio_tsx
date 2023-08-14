@@ -1,4 +1,4 @@
-import { RefObject, useContext, useRef } from "react"
+import { RefObject, useContext, useRef, useState } from "react"
 import { styled } from "styled-components"
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { ThemeProps } from "../../utils/type"
@@ -37,10 +37,20 @@ const StyledH1 = styled.h1<ThemeProps>`
 `
 
 export default function Accueil() {
-  const { theme } = useContext(ThemeContext)
+  //  REF
 
   let paragraph = useRef<HTMLParagraphElement>(null)
   let title = useRef<HTMLHeadingElement>(null)
+
+  // STATE
+
+  const [isWritten, setIsWritten] = useState(false)
+
+  // CTXT
+
+  const { theme } = useContext(ThemeContext)
+
+  // LOGIC
 
   let p = "Bonjour, c'est Greg ! 👋"
 
@@ -65,11 +75,19 @@ export default function Accueil() {
     }, time)
   }
 
-  effect(p, paragraph, speed)
+  const write = () => {
+    if (isWritten === false) {
+      effect(p, paragraph, speed)
 
-  setTimeout(() => {
-    effect(h1, title, speed)
-  }, delay)
+      setTimeout(() => {
+        effect(h1, title, speed)
+      }, delay)
+
+      setIsWritten(true)
+    }
+  }
+
+  write()
 
   return (
     <>

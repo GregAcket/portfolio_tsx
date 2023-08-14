@@ -10,6 +10,17 @@ export type IntroProps = {
 
 export type StyleProjectProps = {
   $isProjectShown?: boolean
-  $hideProjectsWrapper?: boolean
   $ColorUnderline?: string
+}
+
+export type Ohmyfood = {
+  id: number
+  image: string
+  name: string
+  nouveau: boolean
+  place: string
+  entree: [{ accompagnement: string; principal: string; prix: string }]
+
+  plat: [{ accompagnement: string; principal: string; prix: string }]
+  dessert: [{ accompagnement: string; principal: string; prix: string }]
 }

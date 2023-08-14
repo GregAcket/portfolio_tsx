@@ -23,7 +23,6 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  margin: auto;
   max-width: 1920px;
   font-size: 18px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

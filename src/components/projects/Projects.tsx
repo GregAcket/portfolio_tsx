@@ -1,11 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react"
-import { css, styled } from "styled-components"
-import CurlyBrackets from "../../assets/CurlyBrackets"
-import SquareBrackets from "../../assets/SquareBrackets"
-import { SingleProject } from "../../pages/SingleProject"
-import Bookisite from "../booki/Booki"
+import { useContext, useEffect, useState } from "react"
+import { styled } from "styled-components"
+
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { StyleProjectProps, ThemeProps } from "../../utils/type"
+import { Link } from "react-router-dom"
+
+import CurlyBrackets from "../../assets/CurlyBrackets"
+import SquareBrackets from "../../assets/SquareBrackets"
 import Branch from "../../assets/Branch"
 
 type Project = {
@@ -29,22 +30,12 @@ const ProjectSection = styled.section`
   padding: 0px 15px;
 `
 
-const ProjectsWrappers = styled.div<StyleProjectProps>`
+const ProjectsWrappers = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   opacity: 1;
   transition: opacity 400ms;
-  ${({ $hideProjectsWrapper }) =>
-    $hideProjectsWrapper &&
-    css`
-      opacity: 0;
-    `};
-  ${({ $hideProjectsWrapper }) =>
-    $hideProjectsWrapper === false &&
-    css`
-      opacity: 1;
-    `};
 
   :hover div {
     background-position: left 8px;
@@ -92,6 +83,10 @@ const LogoUnderline = styled.div<StyleProjectProps>`
   transition: background-position ease-out 300ms;
 `
 
+const Links = styled(Link)`
+  text-decoration: none;
+`
+
 const Title = styled.div`
   display: flex;
   font-size: 16px;
@@ -106,13 +101,15 @@ const Comment = styled.p<ThemeProps>`
 `
 
 export default function Projects() {
-  const { theme } = useContext(ThemeContext)
-  const goToAsideRef = useRef<HTMLElement>(null)
+  // STATE
 
-  const [projects, setProjects] = useState<Project[]>([])
-  const [isProjectShown, setIsProjectShown] = useState<boolean>(false)
-  const [projectId, setProjectId] = useState<number>(0)
-  const [isWrapperHidden, setIsWrapperhidden] = useState<boolean>(false)
+  const [allProjects, setAllProjects] = useState<Project[]>([])
+
+  //CTXT
+
+  const { theme } = useContext(ThemeContext)
+
+  // EFFECT
 
   const url = "https://realisations.greg-dev.com/realisations"
 
@@ -120,8 +117,8 @@ export default function Projects() {
     async function fetchData() {
       try {
         const response = await fetch(url)
-        const picturesDataJson = await response.json()
-        setProjects(picturesDataJson)
+        const DataJson = await response.json()
+        setAllProjects(DataJson)
       } catch (err) {
         console.log(err)
       }
@@ -129,36 +126,10 @@ export default function Projects() {
     fetchData()
   }, [url])
 
-  console.log(projects)
-  console.log(projectId)
+  // LOGIC
 
-  let array = [<Bookisite />]
-
-  const closeProject = () => {
-    setIsProjectShown(!isProjectShown)
-
-    setTimeout(() => {
-      setIsWrapperhidden(!isWrapperHidden)
-    }, 300)
-  }
-
-  let mappedProjects = projects.map((project) => {
-    const goToAside = () => {
-      if (goToAsideRef.current) goToAsideRef.current.scrollIntoView()
-    }
-
-    const openProject = () => {
-      setIsWrapperhidden(!isWrapperHidden)
-      setTimeout(() => {
-        setIsProjectShown(!isProjectShown)
-      }, 500)
-      setProjectId(project.id)
-      setTimeout(() => {
-        goToAside()
-      }, 1200)
-    }
-
-    let colorArray = [
+  const mappedProjects = allProjects.map((project) => {
+    const colorArray = [
       "#0065fc 50%",
       "#9356dc 50%",
       "#f3976c 50%",
@@ -166,40 +137,35 @@ export default function Projects() {
       "#ff6060 50%",
     ]
 
-    return (
-      <StyledArticle key={project.id} onClick={openProject}>
-        <Images>
-          <Screenshot src={project.screenshot} alt="" />
+    const target = document.getElementById("projects")
+    const scroll = () => {
+      target?.scrollIntoView()
+    }
 
-          <Logo src={project.urlLogo} alt={project.altLogo} />
-        </Images>
-        <Title>
-          <LogoUnderline $ColorUnderline={colorArray[project.id]} />
-          <Comment $isDarkMode={theme === "dark"}>{project.comment}</Comment>
-        </Title>
-      </StyledArticle>
+    return (
+      <Links to={project.link} key={project.id} onClick={scroll}>
+        <StyledArticle>
+          <Images>
+            <Screenshot src={project.screenshot} alt="Project Screenshot" />
+
+            <Logo src={project.urlLogo} alt={project.altLogo} />
+          </Images>
+          <Title>
+            <LogoUnderline $ColorUnderline={colorArray[project.id]} />
+            <Comment $isDarkMode={theme === "dark"}>{project.comment}</Comment>
+          </Title>
+        </StyledArticle>
+      </Links>
     )
   })
 
   return (
     <>
       <ProjectSection>
-        <h2 id="projects">Projets</h2>
         <CurlyBrackets />
         <SquareBrackets />
         <Branch />
-        {isProjectShown ? (
-          <SingleProject
-            children={array[projectId]}
-            closeProject={closeProject}
-            isProjectShown={isProjectShown}
-            ref={goToAsideRef}
-          />
-        ) : (
-          <ProjectsWrappers $hideProjectsWrapper={isWrapperHidden}>
-            {mappedProjects}
-          </ProjectsWrappers>
-        )}
+        <ProjectsWrappers>{mappedProjects}</ProjectsWrappers>
       </ProjectSection>
     </>
   )
