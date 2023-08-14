@@ -4,7 +4,6 @@ import CurlyBrackets from "../../assets/CurlyBrackets"
 import SquareBrackets from "../../assets/SquareBrackets"
 import { SingleProject } from "../../pages/SingleProject"
 import Bookisite from "../booki/Booki"
-import Ohmyfoodsite from "../ohmyfood/ohmyfoodsite"
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { StyleProjectProps, ThemeProps } from "../../utils/type"
 import Branch from "../../assets/Branch"
@@ -133,7 +132,7 @@ export default function Projects() {
   console.log(projects)
   console.log(projectId)
 
-  let array = [<Bookisite />, <Ohmyfoodsite />]
+  let array = [<Bookisite />]
 
   const closeProject = () => {
     setIsProjectShown(!isProjectShown)
