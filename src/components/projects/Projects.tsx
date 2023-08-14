@@ -82,6 +82,10 @@ const LogoUnderline = styled.div<StyleProjectProps>`
   transition: background-position ease-out 300ms;
 `
 
+const Links = styled(Link)`
+  text-decoration: none;
+`
+
 const Title = styled.div`
   display: flex;
   font-size: 16px;
@@ -121,7 +125,7 @@ export default function Projects() {
     fetchData()
   }, [url])
 
-  //
+  // LOGIC
 
   const mappedProjects = allProjects.map((project) => {
     const colorArray = [
@@ -138,7 +142,7 @@ export default function Projects() {
     }
 
     return (
-      <Link to={project.link} key={project.id} onClick={scroll}>
+      <Links to={project.link} key={project.id} onClick={scroll}>
         <StyledArticle>
           <Images>
             <Screenshot src={project.screenshot} alt="Project Screenshot" />
@@ -150,7 +154,7 @@ export default function Projects() {
             <Comment $isDarkMode={theme === "dark"}>{project.comment}</Comment>
           </Title>
         </StyledArticle>
-      </Link>
+      </Links>
     )
   })
 
