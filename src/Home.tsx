@@ -8,6 +8,8 @@ import Header from "./components/header/Header"
 import Intro from "./components/intro/Intro"
 import Footer from "./components/footer/Footer"
 import ScrollToTop from "./components/Scrolltotop"
+import { StateProjectsProvider } from "./utils/StateProjectsProvider"
+import { StateSingleProjectsProvider } from "./utils/StateSingleProjectProvider"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState<Boolean>(false)
@@ -16,16 +18,20 @@ export default function Home() {
     <>
       <ThemeProvider>
         <GlobalStyle />
-        {isLoaded === false ? (
-          <Intro setIsLoaded={setIsLoaded} />
-        ) : (
-          <>
-            <Header />
-            <Outlet />
-            <Footer />
-            <ScrollToTop />
-          </>
-        )}
+        <StateProjectsProvider>
+          <StateSingleProjectsProvider>
+            {isLoaded === false ? (
+              <Intro setIsLoaded={setIsLoaded} />
+            ) : (
+              <>
+                <Header />
+                <Outlet />
+                <Footer />
+                <ScrollToTop />
+              </>
+            )}
+          </StateSingleProjectsProvider>
+        </StateProjectsProvider>
       </ThemeProvider>
     </>
   )

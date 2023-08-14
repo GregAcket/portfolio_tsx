@@ -42,7 +42,7 @@ function Panthere() {
         <nav className="panthere_nav">
           <div className="panthere_nav_div">
             <Link
-              to={"/la_panthere"}
+              to={"/project/la_panthere"}
               className="panthere_a"
               onClick={goToHomepage}
             >
@@ -60,7 +60,7 @@ function Panthere() {
           <ul className={showNav}>
             <li className="panthere_li">
               <Link
-                to={"/la_panthere"}
+                to={"/project/la_panthere"}
                 className="panthere_a"
                 aria-label="Aller à la page d'accueil"
                 onClick={goToHomepage}
@@ -70,7 +70,7 @@ function Panthere() {
             </li>
             <li className="panthere_li">
               <Link
-                to={"/la_panthere"}
+                to={"/project/la_panthere"}
                 className="panthere_a"
                 aria-label="Aller à la page contact"
                 onClick={goToContactPage}

@@ -37,8 +37,6 @@ export default function Restaurant() {
     fetchData()
   }, [url])
 
-  console.log(restauData)
-
   let entrees = restauData?.entree.map((entree, index) => (
     <li className="menu_card" key={index}>
       <div className="menu_content">
@@ -103,7 +101,7 @@ export default function Restaurant() {
       <Svg />
 
       <header className="omf_menu omf_header">
-        <Link to={"/ohmyfood"}>
+        <Link to={"../ohmyfood"}>
           <FontAwesomeIcon
             className="omf_fa-solid omf_fa-arrow-left"
             icon={faArrowLeft}

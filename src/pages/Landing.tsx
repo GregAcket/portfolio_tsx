@@ -10,6 +10,7 @@ export default function Landing() {
       <h2 id="projects">Projets</h2>
 
       <Outlet />
+
       <Apropos />
       <Contact />
     </>

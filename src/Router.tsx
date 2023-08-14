@@ -17,25 +17,27 @@ import Restaurant from "./components/ohmyfood/Restaurant"
 import Projects from "./components/projects/Projects"
 import Panthere from "./components/panthere/Panthere"
 import PanthereMain from "./components/panthere/PanthereMain"
+import MasterWrapper from "./components/MasterWrapper"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Home />}>
       <Route path="/" element={<Landing />}>
         <Route path="/" element={<Projects />} />
-
-        <Route path="/booki" element={<Bookisite />} />
-        <Route path="/ohmyfood" element={<Ohmyfoodsite />} />
-        <Route
-          path="/ohmyfood/:name"
-          element={<Restaurant />}
-          errorElement={<Error />}
-        />
-        <Route path="/la_panthere" element={<Panthere />}>
+        <Route path="/project" element={<MasterWrapper />}>
+          <Route path="/project/booki" element={<Bookisite />} />
+          <Route path="/project/ohmyfood" element={<Ohmyfoodsite />} />
           <Route
-            path="/la_panthere"
-            element={<PanthereMain goToContactPage={function (): void {}} />}
+            path="/project/ohmyfood/:name"
+            element={<Restaurant />}
+            errorElement={<Error />}
           />
+          <Route path="/project/la_panthere" element={<Panthere />}>
+            <Route
+              path="/project/la_panthere"
+              element={<PanthereMain goToContactPage={function (): void {}} />}
+            />
+          </Route>
         </Route>
       </Route>
 

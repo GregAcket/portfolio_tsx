@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import { styled } from "styled-components"
+import { css, styled } from "styled-components"
 
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { StyleProjectProps, ThemeProps } from "../../utils/type"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import CurlyBrackets from "../../assets/CurlyBrackets"
 import SquareBrackets from "../../assets/SquareBrackets"
 import Branch from "../../assets/Branch"
+import { StateProjectsContext } from "../../utils/StateProjectsProvider"
+import { StateSingleProjectsContext } from "../../utils/StateSingleProjectProvider"
 
 type Project = {
   id: number
@@ -83,8 +85,15 @@ const LogoUnderline = styled.div<StyleProjectProps>`
   transition: background-position ease-out 300ms;
 `
 
-const Links = styled(Link)`
+const Links = styled(Link)<StyleProjectProps>`
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 500ms;
+  ${({ $isProjectsWrapperHidden }) =>
+    $isProjectsWrapperHidden &&
+    css`
+      opacity: 0;
+    `};
 `
 
 const Title = styled.div`
@@ -108,6 +117,14 @@ export default function Projects() {
   //CTXT
 
   const { theme } = useContext(ThemeContext)
+  const { isProjectsWrapperHidden, changeProjectsWrapper } =
+    useContext(StateProjectsContext)
+
+  const { changeMasterWrapper } = useContext(StateSingleProjectsContext)
+
+  // NAVIGATE
+
+  const navigate = useNavigate()
 
   // EFFECT
 
@@ -137,13 +154,29 @@ export default function Projects() {
       "#ff6060 50%",
     ]
 
-    const target = document.getElementById("projects")
-    const scroll = () => {
-      target?.scrollIntoView()
+    const openProject = async () => {
+      changeProjectsWrapper()
+      await new Promise((resolve) => setTimeout(resolve, 600))
+      navigate("project" + project.link)
+      const target = document.getElementById("projects")
+      const scroll = () => {
+        target?.scrollIntoView()
+      }
+      setTimeout(() => {
+        scroll()
+      }, 100)
+      setTimeout(() => {
+        changeMasterWrapper()
+      }, 200)
     }
 
     return (
-      <Links to={project.link} key={project.id} onClick={scroll}>
+      <Links
+        to="#"
+        key={project.id}
+        $isProjectsWrapperHidden={isProjectsWrapperHidden}
+        onClick={() => openProject()}
+      >
         <StyledArticle>
           <Images>
             <Screenshot src={project.screenshot} alt="Project Screenshot" />

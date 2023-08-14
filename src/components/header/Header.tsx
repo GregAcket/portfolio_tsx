@@ -5,6 +5,8 @@ import ThemeSwitcher from "../ThemeSwitcher"
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { useContext } from "react"
 import { ThemeProps } from "../../utils/type"
+import { StateProjectsContext } from "../../utils/StateProjectsProvider"
+import { StateSingleProjectsContext } from "../../utils/StateSingleProjectProvider"
 
 const MainHeader = styled.header`
   z-index: 1;
@@ -90,6 +92,17 @@ const Li = styled.li<ThemeProps>`
 
 export default function Header() {
   const { theme } = useContext(ThemeContext)
+  const { isProjectsWrapperHidden, changeProjectsWrapper } =
+    useContext(StateProjectsContext)
+
+  const { changeMasterWrapper } = useContext(StateSingleProjectsContext)
+
+  const reset = () => {
+    if (isProjectsWrapperHidden === true) {
+      changeProjectsWrapper()
+      changeMasterWrapper()
+    }
+  }
 
   const Links = [
     {
@@ -121,7 +134,7 @@ export default function Header() {
     <>
       <MainHeader>
         <TopDiv>
-          <Link to={"/"}>
+          <Link to={"/"} onClick={() => reset()}>
             <BrandId>
               <LogoDev />
             </BrandId>

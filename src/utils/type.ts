@@ -11,6 +11,8 @@ export type IntroProps = {
 export type StyleProjectProps = {
   $isProjectShown?: boolean
   $ColorUnderline?: string
+  $isProjectsWrapperHidden?: boolean
+  $isMasterWrapperShown?: boolean
 }
 
 export type Ohmyfood = {

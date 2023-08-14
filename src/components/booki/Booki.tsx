@@ -31,7 +31,7 @@ import Soleil from "../../assets/booki/pics/soleildumatin.jpg"
 
 import "./bookisite.css"
 
-function Bookisite() {
+export default function Bookisite() {
   return (
     <>
       <header className="booki_header">
@@ -618,5 +618,3 @@ function Bookisite() {
     </>
   )
 }
-
-export default Bookisite

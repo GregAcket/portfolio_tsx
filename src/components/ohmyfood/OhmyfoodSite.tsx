@@ -20,8 +20,11 @@ import logo from "../../assets/ohmyfood/logoOmf.svg"
 import "./ohmyfoodsite.css"
 
 export default function Ohmyfoodsite() {
+  // STATE
+
   const [restauData, setRestauData] = useState<Ohmyfood[]>([])
 
+  // EFFECT
   const url = "https://realisations.greg-dev.com/ohmyfood"
 
   useEffect(() => {
@@ -37,6 +40,8 @@ export default function Ohmyfoodsite() {
     fetchData()
   }, [url])
 
+  // LOGIC
+
   const target = document.querySelector(".omf_header")
   const scroll = () => {
     target?.scrollIntoView()
@@ -44,7 +49,7 @@ export default function Ohmyfoodsite() {
 
   const Restau = restauData?.map((restau) => {
     return (
-      <Link to={`/ohmyfood/${restau.name}`} key={restau.id} onClick={scroll}>
+      <Link to={restau.name} key={restau.id} onClick={scroll}>
         <article className="card">
           <img className="card_img" src={restau.image} alt={restau.name} />
 
