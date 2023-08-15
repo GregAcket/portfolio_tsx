@@ -26,3 +26,24 @@ export type Ohmyfood = {
   plat: [{ accompagnement: string; principal: string; prix: string }]
   dessert: [{ accompagnement: string; principal: string; prix: string }]
 }
+
+export type KanapType = {
+  _id: string
+  altTxt: string
+  colors: string[]
+  description: string
+  imageUrl: string
+  name: string
+  price: number
+}
+
+export type KanapCart = {
+  id: string
+  altTxt: string
+  couleur: string
+  description: string
+  imageUrl: string
+  name: string
+  price: number
+  quantity: number
+}

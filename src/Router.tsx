@@ -18,6 +18,11 @@ import Projects from "./components/projects/Projects"
 import Panthere from "./components/panthere/Panthere"
 import PanthereMain from "./components/panthere/PanthereMain"
 import MasterWrapper from "./components/MasterWrapper"
+import Kanap from "./components/Kanap/tsx/kanap"
+import Kanapindex from "./components/Kanap/tsx/kanapindex"
+import Kanapproduct from "./components/Kanap/tsx/kanapproduct"
+import Kanappanier from "./components/Kanap/tsx/kanappanier"
+import Kanapconfirm from "./components/Kanap/tsx/kanapconfirm"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,11 +43,24 @@ const router = createBrowserRouter(
               element={<PanthereMain goToContactPage={function (): void {}} />}
             />
           </Route>
+          <Route path="/project/kanap" element={<Kanap />}>
+            <Route path="/project/kanap" element={<Kanapindex />} />
+            <Route
+              path="/project/kanap/product/:id"
+              element={<Kanapproduct />}
+              errorElement={<Error />}
+            />
+            <Route path="/project/kanap/cart" element={<Kanappanier />} />
+            <Route
+              path="/project/kanap/confirmation"
+              element={<Kanapconfirm />}
+            />
+            <Route path="*" element={<Error />} />
+          </Route>
         </Route>
       </Route>
 
-      {/*<Route path="/kanap/*" element={<Kanap />} />
-      <Route path="/hot_takes" element={<Hottakes />} />
+      {/* <Route path="/hot_takes" element={<Hottakes />} />
       <Route path="/kasa/*" element={<Kasa />} />  */}
       <Route path="*" element={<Error />} />
     </Route>

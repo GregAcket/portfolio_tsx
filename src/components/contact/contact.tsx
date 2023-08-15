@@ -256,7 +256,7 @@ export default function Contact() {
             <textarea
               name="message"
               id="message"
-              rows={8}
+              rows="8"
               onChange={(e) => handleChange(e)}
               required
             />

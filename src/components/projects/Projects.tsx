@@ -120,7 +120,9 @@ export default function Projects() {
   const { isProjectsWrapperHidden, changeProjectsWrapper } =
     useContext(StateProjectsContext)
 
-  const { changeMasterWrapper } = useContext(StateSingleProjectsContext)
+  const { isMasterWrapperShown, changeMasterWrapper } = useContext(
+    StateSingleProjectsContext
+  )
 
   // NAVIGATE
 
@@ -142,6 +144,25 @@ export default function Projects() {
     }
     fetchData()
   }, [url])
+
+  useEffect(() => {
+    const reset = () => {
+      if (
+        window.location.pathname === "/" &&
+        isMasterWrapperShown &&
+        isProjectsWrapperHidden
+      ) {
+        changeMasterWrapper()
+        changeProjectsWrapper()
+      }
+    }
+    reset()
+  }, [
+    isMasterWrapperShown,
+    isProjectsWrapperHidden,
+    changeMasterWrapper,
+    changeProjectsWrapper,
+  ])
 
   // LOGIC
 

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import { StateSingleProjectsContext } from "../utils/StateSingleProjectProvider"
 import { StateProjectsContext } from "../utils/StateProjectsProvider"
@@ -29,15 +29,28 @@ const Close = styled.p`
 `
 
 export default function MasterWrapperComponent() {
+  const { isProjectsWrapperHidden, changeProjectsWrapper } =
+    useContext(StateProjectsContext)
+
   const { isMasterWrapperShown, changeMasterWrapper } = useContext(
     StateSingleProjectsContext
   )
 
-  const { changeProjectsWrapper } = useContext(StateProjectsContext)
+  useEffect(() => {
+    const reset = () => {
+      if (isMasterWrapperShown === false && isProjectsWrapperHidden === false) {
+        changeMasterWrapper()
+        changeProjectsWrapper()
+      }
+    }
+    reset()
+  })
 
   // NAVIGATE
 
   const navigate = useNavigate()
+
+  // LOGIC
 
   const closeProject = async () => {
     changeMasterWrapper()
