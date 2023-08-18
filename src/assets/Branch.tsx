@@ -14,6 +14,10 @@ const Svg = styled.svg`
   width: 50px;
   height: 50px;
   transform: rotate(-50deg);
+  @media (min-width: 768px) {
+    top: 1600px;
+    right: 155px;
+  }
 `
 
 export default function Branch() {

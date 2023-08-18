@@ -23,6 +23,7 @@ import Kanapindex from "./components/Kanap/tsx/kanapindex"
 import Kanapproduct from "./components/Kanap/tsx/kanapproduct"
 import Kanappanier from "./components/Kanap/tsx/kanappanier"
 import Kanapconfirm from "./components/Kanap/tsx/kanapconfirm"
+import Kasa from "./pages/kasa/main"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,11 +58,11 @@ const router = createBrowserRouter(
             />
             <Route path="*" element={<Error />} />
           </Route>
+          <Route path="/project/kasa/*" element={<Kasa />} />
         </Route>
       </Route>
 
-      {/* <Route path="/hot_takes" element={<Hottakes />} />
-      <Route path="/kasa/*" element={<Kasa />} />  */}
+      {/* <Route path="/hot_takes" element={<Hottakes />} />*/}
       <Route path="*" element={<Error />} />
     </Route>
   )

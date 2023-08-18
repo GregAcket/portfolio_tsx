@@ -10,6 +10,9 @@ import SquareBrackets from "../../assets/SquareBrackets"
 import Branch from "../../assets/Branch"
 import { StateProjectsContext } from "../../utils/StateProjectsProvider"
 import { StateSingleProjectsContext } from "../../utils/StateSingleProjectProvider"
+import Terminal from "../../assets/Terminal"
+import Code from "../../assets/Code"
+import RoundBrackets from "../../assets/RoundBrackets"
 
 type Project = {
   id: number
@@ -34,13 +37,19 @@ const ProjectSection = styled.section`
 
 const ProjectsWrappers = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   opacity: 1;
   transition: opacity 400ms;
 
   :hover div {
     background-position: left 8px;
+  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 50px;
   }
 `
 
@@ -51,11 +60,17 @@ const StyledArticle = styled.article`
   margin: 50px 0px;
   cursor: pointer;
   opacity: 1;
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 `
 
 const Images = styled.div`
   display: flex;
   flex-direction: column;
+  @media (min-width: 768px) {
+    min-height: 510px;
+  }
 `
 
 const Logo = styled.img`
@@ -65,8 +80,8 @@ const Logo = styled.img`
 
 const Screenshot = styled.img`
   object-fit: cover;
-  max-height: 400px;
-  max-width: 250px;
+  height: 400px;
+  width: 250px;
   margin-bottom: 10px;
 `
 
@@ -83,6 +98,11 @@ const LogoUnderline = styled.div<StyleProjectProps>`
   background-size: 200% 3px;
   background-position: right 8px;
   transition: background-position ease-out 300ms;
+  @media (min-width: 768px) {
+    min-width: 80px;
+    align-self: ;
+    margin: 0px;
+  }
 `
 
 const Links = styled(Link)<StyleProjectProps>`
@@ -94,19 +114,49 @@ const Links = styled(Link)<StyleProjectProps>`
     css`
       opacity: 0;
     `};
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `
 
 const Title = styled.div`
   display: flex;
+  width: fit-content;
   font-size: 16px;
   font-weight: 200;
   text-transform: uppercase;
+  @media (min-width: 768px) {
+    position: relative;
+    bottom: 100px;
+    left: 115px;
+    flex-direction: column-reverse;
+    align-items: end;
+  }
 `
 
 const Comment = styled.p<ThemeProps>`
   max-width: 135px;
   font-size: 15px;
   color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
+  @media (min-width: 768px) {
+    text-align: right;
+  }
+`
+
+const TerminalWrapper = styled.div<ThemeProps>`
+  position: absolute;
+  bottom: -2500px;
+  right: 65px;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  transform: rotate(25deg);
+  border: 3px solid ${({ $isDarkMode }) => ($isDarkMode ? "#4d4d4d" : "#ccc")};
+  @media (min-width: 768px) {
+    bottom: -1655px;
+    right: 105px;
+  }
 `
 
 export default function Projects() {
@@ -213,13 +263,20 @@ export default function Projects() {
     )
   })
 
+  let reversedProjects = mappedProjects.reverse()
+
   return (
     <>
       <ProjectSection>
         <CurlyBrackets />
         <SquareBrackets />
         <Branch />
-        <ProjectsWrappers>{mappedProjects}</ProjectsWrappers>
+        <TerminalWrapper $isDarkMode={theme === "dark"}>
+          <Terminal />
+        </TerminalWrapper>
+        <Code />
+        <RoundBrackets />
+        <ProjectsWrappers>{reversedProjects}</ProjectsWrappers>
       </ProjectSection>
     </>
   )

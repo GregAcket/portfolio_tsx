@@ -9,6 +9,7 @@ const MasterWrapper = styled.div<StyleProjectProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0px 10px;
   opacity: 0;
   transition: opacity 500ms;
   transition-delay: 200ms;
@@ -23,7 +24,6 @@ const Close = styled.p`
   font-size: 20px;
   font-weight: 600;
   align-self: end;
-  margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
 `

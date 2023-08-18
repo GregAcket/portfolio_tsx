@@ -9,11 +9,19 @@ const Path = styled.path<ThemeProps>`
 
 const Svg = styled.svg`
   position: absolute;
-  bottom: -120px;
-  right: 36px;
+  bottom: -130px;
+  right: 15px;
   width: 70px;
   height: 70px;
   transform: rotate(30deg);
+  @media (min-width: 550px) {
+    bottom: -170px;
+    right: 60px;
+  }
+  @media (min-width: 768px) {
+    bottom: -210px;
+    right: 35px;
+  }
 `
 
 export default function CurlyBrackets() {

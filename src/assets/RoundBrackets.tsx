@@ -9,11 +9,15 @@ const Path = styled.path<ThemeProps>`
 
 const Svg = styled.svg`
   position: absolute;
-  bottom: -2985px;
+  bottom: -3050px;
   right: 20px;
   width: 65px;
   height: 65px;
   transform: rotate(-45deg);
+  @media (min-width: 768px) {
+    bottom: -2000px;
+    left: 75px;
+  }
 `
 
 export default function RoundBrackets() {

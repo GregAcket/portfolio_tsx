@@ -7,7 +7,7 @@ const StyledPath = styled.path<ThemeProps>`
   fill: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
 `
 
-const StyledSpan = styled.tspan<ThemeProps>`
+const StyledSpan = styled.tspan`
   fill: "green";
 `
 

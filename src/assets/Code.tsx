@@ -8,11 +8,15 @@ const Path = styled.path<ThemeProps>`
 `
 const Svg = styled.svg`
   position: absolute;
-  bottom: -1650px;
-  right: 300px;
+  bottom: -1925px;
+  left: 60px;
   width: 65px;
   height: 65px;
   transform: rotate(35deg);
+  @media (min-width: 768px) {
+    bottom: -1440px;
+    left: 100px;
+  }
 `
 
 export default function Code() {

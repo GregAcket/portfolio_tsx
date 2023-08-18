@@ -14,6 +14,10 @@ const Svg = styled.svg`
   width: 60px;
   height: 60px;
   transform: rotate(-25deg);
+  @media (min-width: 768px) {
+    bottom: -775px;
+    left: 130px;
+  }
 `
 
 export default function SquareBrackets() {

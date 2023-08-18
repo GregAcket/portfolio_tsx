@@ -115,8 +115,6 @@ export default function Contact() {
     const fieldValue = e.target.value
     const newField = { [fieldName]: { value: fieldValue } }
     setForm({ ...form, ...newField })
-
-    console.log(form)
   }
 
   //Validation regex
@@ -221,7 +219,7 @@ export default function Contact() {
       <BackgroundWave />
 
       <ContactWrapperSection>
-        <h2 id="contact">Me contacter</h2>
+        <h2 id="contact">Contact</h2>
 
         <StyledForm method="post" onSubmit={(e) => sendMail(e)}>
           <FormId>

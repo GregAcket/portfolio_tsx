@@ -7,6 +7,13 @@ const G = styled.g<ThemeProps>`
   stroke: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
 `
 
+const Svg = styled.svg`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+`
+
 export default function Wave() {
   const { theme } = useContext(ThemeContext)
 
