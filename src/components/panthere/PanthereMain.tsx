@@ -10,9 +10,18 @@ type PanthereProps = {
   goToContactPage: () => void
 }
 
+export type lightboxPictureType = {
+  id?: number
+  url?: string
+  text?: string
+  alt?: string
+  h3?: string
+  p?: string
+}
+
 export default function PanthereMain({ goToContactPage }: PanthereProps) {
   const [isLightboxShown, setLightbox] = useState(false)
-  const [whichPicture, setPicture] = useState({})
+  const [whichPicture, setPicture] = useState<lightboxPictureType>({})
 
   let hideLightbox = () => {
     setLightbox(false)

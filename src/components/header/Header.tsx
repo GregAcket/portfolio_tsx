@@ -16,7 +16,6 @@ const MainHeader = styled.header`
   max-width: 1920px;
   width: 100%;
   padding: 30px 15px 0px;
-  height: 20vh;
 
   @media (min-width: 768px) {
   }
@@ -28,18 +27,10 @@ const TopDiv = styled.div`
   align-items: center;
 `
 
-const BrandId = styled.div`
-  display: flex;
-  align-items: center;
-  max-width: 72px;
-  max-height: 50px;
-
-  @media (min-width: 768px) {
-    max-width: 170px;
-  }
-`
-
 const BrandName = styled.p<ThemeProps>`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 22px;
   font-weight: 600;
 
@@ -52,8 +43,10 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px 0px;
-  margin-top: 25px;
+  margin-top: 45px;
+  @media (min-width: 768px) {
+    margin-top: 95px;
+  }
 `
 
 const Ul = styled.ul`
@@ -85,7 +78,7 @@ const Li = styled.li<ThemeProps>`
     text-decoration: none;
     color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
     @media (min-width: 768px) {
-      font-size: 20px;
+      font-size: 22px;
     }
   }
 `
@@ -135,9 +128,7 @@ export default function Header() {
       <MainHeader>
         <TopDiv>
           <Link to={"/"} onClick={() => reset()}>
-            <BrandId>
-              <LogoDev />
-            </BrandId>
+            <LogoDev />
           </Link>
           <BrandName $isDarkMode={theme === "dark"}>Greg_Dev</BrandName>
           <ThemeSwitcher />

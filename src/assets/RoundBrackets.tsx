@@ -15,8 +15,8 @@ const Svg = styled.svg`
   height: 65px;
   transform: rotate(-45deg);
   @media (min-width: 768px) {
-    bottom: -2000px;
-    left: 75px;
+    bottom: -1850px;
+    right: 180px;
   }
 `
 

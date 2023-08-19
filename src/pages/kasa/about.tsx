@@ -7,6 +7,7 @@ import "./about.css"
 const DropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
   max-width: 1280px;
   width: 100%;

@@ -46,7 +46,7 @@ function Panthere() {
               className="panthere_a"
               onClick={goToHomepage}
             >
-              <SvgComponent className="panthere_header_logo" />
+              <SvgComponent />
             </Link>
             <button
               id="nav-toggle"

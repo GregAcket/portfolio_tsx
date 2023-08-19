@@ -5,7 +5,7 @@ import { StateProjectsContext } from "../utils/StateProjectsProvider"
 import { css, styled } from "styled-components"
 import { StyleProjectProps } from "../utils/type"
 
-const MasterWrapper = styled.div<StyleProjectProps>`
+const MasterWrapper = styled.section<StyleProjectProps>`
   display: flex;
   flex-direction: column;
   align-items: center;

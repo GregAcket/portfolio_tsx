@@ -23,16 +23,17 @@ type MailForm = {
 const ContactWrapperSection = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-self: center;
   max-width: 920px;
   width: 100%;
-  min-height: 700px;
   padding: 20px;
+  min-height: 500px;
+`
 
-  h2 {
-    font-size: 42px;
-    margin: 80px 0px;
+const H2 = styled.h2`
+  margin-bottom: 80px;
+  @media (min-width: 768px) {
+    font-size: 34px;
   }
 `
 
@@ -219,7 +220,7 @@ export default function Contact() {
       <BackgroundWave />
 
       <ContactWrapperSection>
-        <h2 id="contact">Contact</h2>
+        <H2 id="contact">Contact</H2>
 
         <StyledForm method="post" onSubmit={(e) => sendMail(e)}>
           <FormId>

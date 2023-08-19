@@ -9,7 +9,7 @@ const Path = styled.path<ThemeProps>`
 
 const Svg = styled.svg`
   position: absolute;
-  bottom: -130px;
+  bottom: -100px;
   right: 15px;
   width: 70px;
   height: 70px;
@@ -19,8 +19,8 @@ const Svg = styled.svg`
     right: 60px;
   }
   @media (min-width: 768px) {
-    bottom: -210px;
-    right: 35px;
+    bottom: -450px;
+    right: 175px;
   }
 `
 

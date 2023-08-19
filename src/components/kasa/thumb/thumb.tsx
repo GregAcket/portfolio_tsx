@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import logementJson from "../../../utils/kasa/logements.json"
 import "./thumb.css"
-import { useEffect } from "react"
 
 export default function Thumb() {
   const goToHeader = () => {

@@ -46,10 +46,13 @@ const ProjectsWrappers = styled.div`
     background-position: left 8px;
   }
   @media (min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+
+    :nth-child(even) article {
+      transform: translateY(260px);
+    }
   }
 `
 
@@ -154,8 +157,11 @@ const TerminalWrapper = styled.div<ThemeProps>`
   transform: rotate(25deg);
   border: 3px solid ${({ $isDarkMode }) => ($isDarkMode ? "#4d4d4d" : "#ccc")};
   @media (min-width: 768px) {
-    bottom: -1655px;
+    bottom: -1150px;
     right: 105px;
+  }
+  @media (min-width: 910px) {
+    bottom: -1180px;
   }
 `
 
@@ -219,7 +225,7 @@ export default function Projects() {
   const mappedProjects = allProjects.map((project) => {
     const colorArray = [
       "#0065fc 50%",
-      "#9356dc 50%",
+      "#9356dc 50%, #f576da",
       "#f3976c 50%",
       "#0a3b4d 50%",
       "#ff6060 50%",

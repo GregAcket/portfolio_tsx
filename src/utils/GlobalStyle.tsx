@@ -35,10 +35,6 @@ ul {
   margin: 0px;
 }
 
-h2{
-  margin-bottom: 50px;
-}
-
 button,
 ul {
   padding: 0px;

@@ -7,13 +7,20 @@ import {
 import ImageJson from "../../utils/panthere_images.json"
 import "./pantherelightbox.css"
 import { useEffect, useState } from "react"
+import { lightboxPictureType } from "./PanthereMain"
 
-const Lightbox = ({ willClose, show, whichPicture }) => {
+type LightboxPropsType = {
+  show: boolean
+  willClose: () => void
+  whichPicture: lightboxPictureType
+}
+
+const Lightbox = ({ willClose, show, whichPicture }: LightboxPropsType) => {
   const showOrHideBox = show
     ? "panthere_lightbox panthere_lightbox_show"
     : "panthere_lightbox panthere_lightbox_hide"
 
-  const [picture, setPicture] = useState({})
+  const [picture, setPicture] = useState<lightboxPictureType>({})
 
   useEffect(() => {
     setPicture(whichPicture)
@@ -21,9 +28,11 @@ const Lightbox = ({ willClose, show, whichPicture }) => {
 
   function increase() {
     let number = picture.id
-    number++
-    if (number > ImageJson.length - 1) {
-      number = 0
+    if (number !== undefined) {
+      number++
+      if (number > ImageJson.length - 1) {
+        number = 0
+      }
     }
     let check = ImageJson.find((search) => search.id === number)
     if (check !== undefined) {
@@ -33,9 +42,11 @@ const Lightbox = ({ willClose, show, whichPicture }) => {
 
   function decrease() {
     let number = picture.id
-    number--
-    if (number < 0) {
-      number = ImageJson.length - 1
+    if (number !== undefined) {
+      number--
+      if (number < 0) {
+        number = ImageJson.length - 1
+      }
     }
     let check = ImageJson.find((search) => search.id === number)
     if (check !== undefined) {

@@ -2,13 +2,63 @@ import { useContext } from "react"
 import { styled } from "styled-components"
 import { ThemeContext } from "../../utils/ThemeProvider"
 import { ThemeProps } from "../../utils/type"
+import Avatar from "../../assets/Acket_Gregory.jpeg"
+import { Link } from "react-router-dom"
 
 const Section = styled.section<ThemeProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
   background: linear-gradient(
-    to bottom,
-    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "white")} 30%,
-    ${({ $isDarkMode }) => ($isDarkMode ? "black" : "black")}
+    to top right,
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%,
+    ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%
   );
+`
+
+const H2 = styled.h2`
+  align-self: start;
+  margin: 50px 0px;
+  padding: 0px 30px;
+  @media (min-width: 768px) {
+    font-size: 34px;
+    margin: 80px 0px;
+  }
+`
+
+const Article = styled.article<ThemeProps>`
+  background: linear-gradient(
+    to top right,
+    ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%,
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%
+  );
+  background-clip: text;
+  color: transparent;
+  width: 100%;
+  padding: 0px 15%;
+`
+
+const Img = styled.img`
+  float: left;
+  margin-right: 10px;
+  clip-path: circle();
+  width: 73px;
+  @media (min-width: 768px) {
+    width: 120px;
+  }
+`
+
+const P = styled.p`
+  text-align: justify;
+`
+
+const A = styled(Link)<ThemeProps>`
+  font-weight: 600;
+  color: ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")};
+  text-shadow: 2px 1px 1px
+    ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
+  text-decoration: none;
 `
 
 export default function Apropos() {
@@ -16,26 +66,50 @@ export default function Apropos() {
 
   return (
     <>
+      <H2 id="a_propos">À propos</H2>
       <Section $isDarkMode={theme === "dark"}>
-        <h2 id="a_propos">À propos</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          veritatis labore iure accusamus facilis, perferendis debitis ipsa
-          consectetur dicta sequi doloremque ut voluptatem dolores minus
-          voluptatibus delectus repellat! Quidem, officiis?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          veritatis labore iure accusamus facilis, perferendis debitis ipsa
-          consectetur dicta sequi doloremque ut voluptatem dolores minus
-          voluptatibus delectus repellat! Quidem, officiis?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          veritatis labore iure accusamus facilis, perferendis debitis ipsa
-          consectetur dicta sequi doloremque ut voluptatem dolores minus
-          voluptatibus delectus repellat! Quidem, officiis?
-        </p>
+        {/*         <Wrapper $isDarkMode={theme === "dark"}>   */}
+        <Article $isDarkMode={theme === "dark"}>
+          <Img src={Avatar} alt="Portrait" />
+          <P>
+            Bienvenue sur mon portfolio, je suis
+            <strong> développeur web spécialisé en React et Node.js </strong>
+            <br />
+            <br />
+            Ces 2 technologies, extrêmement populaires et utilisées par les
+            géants du web (facebook, twitter, netflix, airbnb ... ), sont à la
+            fois modernes, rapides en exécution et utilisent peu de ressources.
+            Elles permettent d'afficher plus vite, un plus grand nombre
+            d'éléments tout en réduisant les temps de chargement de vos pages
+            pour vos utilisateurs.
+          </P>
+          <P>
+            <br />
+            Je vous présente ici différents projets, certains personnels,
+            d'autres que j'ai eu à accomplir au cours de ma formation.
+            <br />
+            <br />
+            Pour les besoins de ce portfolio et pour vous donner un aperçu, j'ai
+            retravaillé tous les projets initiaux, que vous trouverez sur mon{" "}
+            <A
+              to={"https://github.com/GregAcket/"}
+              target="_blank"
+              $isDarkMode={theme === "dark"}
+            >
+              Github
+            </A>
+            , pour vous les présenter ici en React / Node.js.
+            <br />
+            <br />
+            Si vous avez des questions, besoin d'informations, de conseils ou
+            tout simplement, que vous désirez en savoir plus, je me tiens à
+            votre disposition. N'hésitez pas à me contacter.
+            <br />
+            <br />
+            Je vous accompagnerais avec plaisir dans vos projets !
+          </P>
+        </Article>
+        {/*        </Wrapper> */}
       </Section>
     </>
   )

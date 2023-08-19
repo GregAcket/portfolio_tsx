@@ -11,11 +11,21 @@ const StyledSpan = styled.tspan`
   fill: "green";
 `
 
+const Svg = styled.svg`
+  max-height: 36px;
+  max-width: 72px;
+
+  @media (min-width: 768px) {
+    max-height: 60px;
+    max-width: 120px;
+  }
+`
+
 export default function Logodev() {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <svg
+    <Svg
       xmlns="http://www.w3.org/2000/svg"
       width="167.25"
       height="83.62"
@@ -95,6 +105,6 @@ export default function Logodev() {
           fontSize="3.175"
         ></path>
       </g>
-    </svg>
+    </Svg>
   )
 }

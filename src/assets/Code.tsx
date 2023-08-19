@@ -14,8 +14,12 @@ const Svg = styled.svg`
   height: 65px;
   transform: rotate(35deg);
   @media (min-width: 768px) {
-    bottom: -1440px;
-    left: 100px;
+    bottom: -1480px;
+    left: 175px;
+  }
+  @media (min-width: 910px) {
+    bottom: -1530px;
+    left: 190px;
   }
 `
 

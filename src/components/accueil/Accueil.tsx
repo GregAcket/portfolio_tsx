@@ -9,17 +9,24 @@ const SectionAccueil = styled.section<ThemeProps>`
   flex-direction: column;
   gap: 40px;
   height: 65vh;
-  padding: 70px 30px 0px;
+  padding: 90px 30px 0px;
 `
 
 const StyledP = styled.p<ThemeProps>`
   margin-top: 40px;
   font-size: 18px;
+  width: fit-content;
   color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
   text-shadow: ${({ $isDarkMode }) =>
     $isDarkMode
       ? "3px 3px 5px rgba(221, 218, 216, 0.3)"
       : "3px 3px 5px rgba(34, 37, 39, 0.3)"};
+  @media (min-width: 768px) {
+    position: relative;
+    top: 50px;
+    left: 100px;
+    font-size: 22px;
+  }
 `
 
 const StyledH1 = styled.h1<ThemeProps>`
@@ -34,6 +41,13 @@ const StyledH1 = styled.h1<ThemeProps>`
     $isDarkMode
       ? "3px 3px 5px rgba(221, 218, 216, 0.6)"
       : "3px 3px 5px rgba(34, 37, 39, 0.6)"};
+  @media (min-width: 768px) {
+    position: relative;
+    top: 50px;
+    left: 100px;
+    font-size: 30px;
+    width: 450px;
+  }
 `
 
 export default function Accueil() {
