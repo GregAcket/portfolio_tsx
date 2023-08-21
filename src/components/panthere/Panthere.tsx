@@ -1,13 +1,39 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
+import { styled } from "styled-components"
 import Pantherecontact from "./PanthereContact"
 import SvgComponent from "./PanthereLogoSVG"
 import PanthereMain from "./PanthereMain"
 import { useState } from "react"
 import "./panthere.css"
 
-function Panthere() {
+const Links = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  color: #f3976c;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    border-radius: 10px;
+  }
+`
+
+const Socials = styled(FontAwesomeIcon)`
+  width: 30px;
+  height: 30px;
+`
+
+export default function Panthere() {
   // STATE
 
   const [isHomepage, setIsHomePage] = useState(true)
@@ -18,7 +44,7 @@ function Panthere() {
     setIsHomePage(false)
     setTimeout(() => {
       scroll()
-    }, 100)
+    }, 400)
   }
 
   let goToHomepage = () => {
@@ -112,31 +138,20 @@ function Panthere() {
           </p>
         </address>
         <div className="panthere_footer_socialLink">
-          <a
-            className="panthere_footer_social"
-            href="#"
-            aria-label="lien vers notre Twitter"
-          >
+          <Links to="#" aria-label="lien vers notre Twitter">
+            <Socials icon={faTwitter} />
             <span className="fa fa-twitter ltc-atomic-tangerine icon-md"></span>
-          </a>
-          <a
-            className="panthere_footer_social"
-            href="#"
-            aria-label="lien vers notre Facebook"
-          >
+          </Links>
+          <Links to="#" aria-label="lien vers notre Facebook">
+            <Socials icon={faFacebook} />
             <span className="fa fa-facebook ltc-atomic-tangerine icon-md"></span>
-          </a>
-          <a
-            className="panthere_footer_social"
-            href="#"
-            aria-label="lien vers notre Instagram"
-          >
+          </Links>
+          <Links to="#" aria-label="lien vers notre Instagram">
+            <Socials icon={faInstagram} />
             <span className="fa fa-instagram ltc-atomic-tangerine icon-md"></span>
-          </a>
+          </Links>
         </div>
       </footer>
     </>
   )
 }
-
-export default Panthere

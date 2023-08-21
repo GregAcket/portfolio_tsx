@@ -17,9 +17,15 @@ const Svg = styled.svg`
     bottom: -1480px;
     left: 175px;
   }
+
   @media (min-width: 910px) {
     bottom: -1530px;
     left: 190px;
+  }
+
+  @media (min-width: 992px) {
+    bottom: -1680px;
+    left: 55px;
   }
 `
 

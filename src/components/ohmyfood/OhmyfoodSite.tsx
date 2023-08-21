@@ -79,7 +79,7 @@ export default function Ohmyfoodsite() {
       <Svg />
 
       <header className="omf_header">
-        <Link to={"/ohmyfood"}>
+        <Link to={"/project/ohmyfood"}>
           <img className="omf_mainPage_logo" src={logo} alt="logo" />
         </Link>
       </header>
@@ -138,7 +138,7 @@ export default function Ohmyfoodsite() {
       <footer className="omf_footer">
         <ul className="omf_ul">
           <li>
-            <Link to={"/ohmyfood"}>Ohmyfood</Link>
+            <Link to={"/project/ohmyfood"}>Ohmyfood</Link>
           </li>
           <li>
             <Link to="#">

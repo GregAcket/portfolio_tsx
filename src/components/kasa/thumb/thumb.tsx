@@ -5,7 +5,6 @@ import "./thumb.css"
 export default function Thumb() {
   const goToHeader = () => {
     const target = document.querySelector(".Kasa_header")
-    console.log(target)
     const scroll = () => {
       setTimeout(() => {
         target?.scrollIntoView()

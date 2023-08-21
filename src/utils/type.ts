@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react"
 
 export type ThemeProps = {
   $isDarkMode: boolean
+  $isChecked?: boolean
 }
 
 export type IntroProps = {

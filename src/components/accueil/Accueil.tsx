@@ -12,48 +12,36 @@ const SectionAccueil = styled.section<ThemeProps>`
   padding: 90px 30px 0px;
 `
 
-const StyledP = styled.p<ThemeProps>`
-  margin-top: 40px;
-  font-size: 18px;
-  width: fit-content;
-  color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
-  text-shadow: ${({ $isDarkMode }) =>
-    $isDarkMode
-      ? "3px 3px 5px rgba(221, 218, 216, 0.3)"
-      : "3px 3px 5px rgba(34, 37, 39, 0.3)"};
-  @media (min-width: 768px) {
-    position: relative;
-    top: 50px;
-    left: 100px;
-    font-size: 22px;
-  }
-`
-
 const StyledH1 = styled.h1<ThemeProps>`
-  display: flex;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 20px;
   font-weight: 600;
-  width: 298px;
-  margin-top: 40px;
+  width: 222px;
+  margin-top: 150px;
   text-transform: uppercase;
   color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
   text-shadow: ${({ $isDarkMode }) =>
     $isDarkMode
       ? "3px 3px 5px rgba(221, 218, 216, 0.6)"
       : "3px 3px 5px rgba(34, 37, 39, 0.6)"};
+
+  @media (min-width: 576px) {
+    font-size: 25px;
+    width: 277px;
+  }
+
   @media (min-width: 768px) {
-    position: relative;
     top: 50px;
-    left: 100px;
     font-size: 30px;
-    width: 450px;
+    width: 624px;
   }
 `
 
 export default function Accueil() {
   //  REF
 
-  let paragraph = useRef<HTMLParagraphElement>(null)
   let title = useRef<HTMLHeadingElement>(null)
 
   // STATE
@@ -66,12 +54,9 @@ export default function Accueil() {
 
   // LOGIC
 
-  let p = "Bonjour, c'est Greg ! 👋"
-
-  let h1 = "Développeur Fullstack React / Node.js"
+  let h1 = "Développeur Web React / Node.js"
 
   let speed = 45
-  let delay = p.length * speed + speed
 
   function effect(sentence: string, ref: RefObject<HTMLElement>, time: number) {
     let i = 0
@@ -91,12 +76,7 @@ export default function Accueil() {
 
   const write = () => {
     if (isWritten === false) {
-      effect(p, paragraph, speed)
-
-      setTimeout(() => {
-        effect(h1, title, speed)
-      }, delay)
-
+      effect(h1, title, speed)
       setIsWritten(true)
     }
   }
@@ -106,7 +86,6 @@ export default function Accueil() {
   return (
     <>
       <SectionAccueil $isDarkMode={theme === "dark"}>
-        <StyledP ref={paragraph} $isDarkMode={theme === "dark"}></StyledP>
         <StyledH1 ref={title} $isDarkMode={theme === "dark"}></StyledH1>
       </SectionAccueil>
       <Wave />

@@ -14,9 +14,20 @@ const Svg = styled.svg`
   width: 50px;
   height: 50px;
   transform: rotate(-50deg);
+
   @media (min-width: 768px) {
     top: 1600px;
     right: 155px;
+  }
+
+  @media (min-width: 992px) {
+    top: 1780px;
+    right: 190px;
+  }
+
+  @media (min-width: 1200px) {
+    top: 1835px;
+    right: 190px;
   }
 `
 

@@ -10,11 +10,19 @@ const Section = styled.section<ThemeProps>`
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  min-height: 600px;
   background: linear-gradient(
-    to top right,
+    25deg,
     ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%,
     ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%
   );
+  @media (min-width: 992px) {
+    background: linear-gradient(
+      15deg,
+      ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%,
+      ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%
+    );
+  }
 `
 
 const H2 = styled.h2`
@@ -29,14 +37,25 @@ const H2 = styled.h2`
 
 const Article = styled.article<ThemeProps>`
   background: linear-gradient(
-    to top right,
+    25deg,
     ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%,
     ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%
   );
+  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   width: 100%;
   padding: 0px 15%;
+
+  @media (min-width: 992px) {
+    background: linear-gradient(
+      15deg,
+      ${({ $isDarkMode }) => ($isDarkMode ? "black" : "white")} 50%,
+      ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")} 50%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 `
 
 const Img = styled.img`
@@ -68,12 +87,11 @@ export default function Apropos() {
     <>
       <H2 id="a_propos">À propos</H2>
       <Section $isDarkMode={theme === "dark"}>
-        {/*         <Wrapper $isDarkMode={theme === "dark"}>   */}
         <Article $isDarkMode={theme === "dark"}>
           <Img src={Avatar} alt="Portrait" />
           <P>
             Bienvenue sur mon portfolio, je suis
-            <strong> développeur web spécialisé en React et Node.js </strong>
+            <strong> développeur web, spécialisé en React et Node.js </strong>
             <br />
             <br />
             Ces 2 technologies, extrêmement populaires et utilisées par les
@@ -86,11 +104,8 @@ export default function Apropos() {
           <P>
             <br />
             Je vous présente ici différents projets, certains personnels,
-            d'autres que j'ai eu à accomplir au cours de ma formation.
-            <br />
-            <br />
-            Pour les besoins de ce portfolio et pour vous donner un aperçu, j'ai
-            retravaillé tous les projets initiaux, que vous trouverez sur mon{" "}
+            d'autres que j'ai eu à accomplir au cours de ma formation. Vous
+            pouvez retrouver le code source sur mon{" "}
             <A
               to={"https://github.com/GregAcket/"}
               target="_blank"
@@ -98,7 +113,7 @@ export default function Apropos() {
             >
               Github
             </A>
-            , pour vous les présenter ici en React / Node.js.
+            .
             <br />
             <br />
             Si vous avez des questions, besoin d'informations, de conseils ou
@@ -109,7 +124,6 @@ export default function Apropos() {
             Je vous accompagnerais avec plaisir dans vos projets !
           </P>
         </Article>
-        {/*        </Wrapper> */}
       </Section>
     </>
   )

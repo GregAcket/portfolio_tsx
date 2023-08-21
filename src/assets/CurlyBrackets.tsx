@@ -22,6 +22,21 @@ const Svg = styled.svg`
     bottom: -450px;
     right: 175px;
   }
+
+  @media (min-width: 992px) {
+    bottom: -530px;
+    right: 305px;
+  }
+
+  @media (min-width: 1055px) {
+    bottom: -530px;
+    right: 335px;
+  }
+
+  @media (min-width: 1170px) {
+    bottom: -480px;
+    right: 390px;
+  }
 `
 
 export default function CurlyBrackets() {

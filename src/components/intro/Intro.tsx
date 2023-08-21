@@ -45,7 +45,7 @@ const SidesWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%) rotateY(90deg) rotateZ(45deg);
+  transform: translateX(-50%) translateY(-50%) rotateY(89deg) rotateZ(45deg);
   animation: 1000ms ease-in forwards normal ${Rotate};
 `
 

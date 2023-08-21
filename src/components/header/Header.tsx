@@ -16,9 +16,6 @@ const MainHeader = styled.header`
   max-width: 1920px;
   width: 100%;
   padding: 30px 15px 0px;
-
-  @media (min-width: 768px) {
-  }
 `
 
 const TopDiv = styled.div`
@@ -44,6 +41,7 @@ const Nav = styled.nav`
   align-items: center;
   width: 100%;
   margin-top: 45px;
+
   @media (min-width: 768px) {
     margin-top: 95px;
   }
@@ -127,7 +125,11 @@ export default function Header() {
     <>
       <MainHeader>
         <TopDiv>
-          <Link to={"/"} onClick={() => reset()}>
+          <Link
+            to={"/"}
+            onClick={() => reset()}
+            aria-label="Logo du site retour à la page d'accueil"
+          >
             <LogoDev />
           </Link>
           <BrandName $isDarkMode={theme === "dark"}>Greg_Dev</BrandName>

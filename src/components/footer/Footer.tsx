@@ -41,15 +41,24 @@ export default function Footer() {
       <CampGround />
       <StyledFooter $isDarkMode={theme === "dark"}>
         <StyledSocials>
-          <Link reloadDocument to="#contact">
+          <Link
+            reloadDocument
+            to="#contact"
+            aria-label="Lien vers la section contact"
+          >
             <Mail />
           </Link>
-          <Link to="https://github.com/GregAcket" target="_blank">
+          <Link
+            to="https://github.com/GregAcket"
+            target="_blank"
+            aria-label="Lien vers le site Github"
+          >
             <Github />
           </Link>
           <Link
             to="https://www.linkedin.com/in/gregory-a-187743115"
             target="_blank"
+            aria-label="Lien vers le site LinkedIn"
           >
             <Linkedin />
           </Link>

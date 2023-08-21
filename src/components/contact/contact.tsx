@@ -28,6 +28,7 @@ const ContactWrapperSection = styled.section`
   width: 100%;
   padding: 20px;
   min-height: 500px;
+  margin: 50px 0px;
 `
 
 const H2 = styled.h2`
@@ -90,11 +91,7 @@ const Envoyer = styled.input`
   height: 43px;
   font-size: 18px;
   transition: all 300ms;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
-  }
+  cursor: pointer;
 `
 const ErrorMsg = styled.p`
   color: red;

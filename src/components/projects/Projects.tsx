@@ -21,6 +21,7 @@ type Project = {
   github: string
   link: string
   screenshot: string
+  smallscreenshot: string
   techno: string[]
   urlLogo: string
   title: string
@@ -33,18 +34,24 @@ const ProjectSection = styled.section`
   max-width: 100vw;
   min-height: 450px;
   padding: 0px 15px;
+
+  @media (min-width: 1180px) {
+    margin: auto;
+  }
 `
 
 const ProjectsWrappers = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1149px;
   opacity: 1;
   transition: opacity 400ms;
 
   :hover div {
     background-position: left 8px;
   }
+
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -54,7 +61,28 @@ const ProjectsWrappers = styled.div`
       transform: translateY(260px);
     }
   }
+
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 50px;
+
+    :nth-child(even) article {
+      transform: translateY(0px);
+    }
+  }
+  }
 `
+
+// @media (min-width: 992px) {
+//   grid-template-columns: repeat(3, 1fr);
+//   grid-template-rows: auto;
+//
+//   :nth-child(even) article {
+//     transform: translateY(0px);
+//   }
 
 const StyledArticle = styled.article`
   display: flex;
@@ -99,9 +127,10 @@ const LogoUnderline = styled.div<StyleProjectProps>`
   );
   background-repeat: no-repeat;
   background-size: 200% 3px;
-  background-position: right 8px;
+  background-position: left 8px;
   transition: background-position ease-out 300ms;
   @media (min-width: 768px) {
+    background-position: right 8px;
     min-width: 80px;
     align-self: ;
     margin: 0px;
@@ -156,12 +185,29 @@ const TerminalWrapper = styled.div<ThemeProps>`
   border-radius: 5px;
   transform: rotate(25deg);
   border: 3px solid ${({ $isDarkMode }) => ($isDarkMode ? "#4d4d4d" : "#ccc")};
+
   @media (min-width: 768px) {
     bottom: -1150px;
     right: 105px;
   }
+
   @media (min-width: 910px) {
     bottom: -1180px;
+  }
+
+  @media (min-width: 992px) {
+    bottom: -1300px;
+    right: 525px;
+  }
+
+  @media (min-width: 1200px) {
+    bottom: -1180px;
+    right: 640px;
+  }
+
+  @media (min-width: 1700px) {
+    bottom: -1260px;
+    right: 640px;
   }
 `
 
@@ -223,6 +269,8 @@ export default function Projects() {
   // LOGIC
 
   const mappedProjects = allProjects.map((project) => {
+    // color needed for the underline
+
     const colorArray = [
       "#0065fc 50%",
       "#9356dc 50%, #f576da",
@@ -230,6 +278,10 @@ export default function Projects() {
       "#0a3b4d 50%",
       "#ff6060 50%",
     ]
+
+    /* The openProject function closes the projects section, wait for 600ms the time projects section fades-out, 
+    goes to the wanted address, scroll to the top of the opened project and finally makes him finally fades-in
+    */
 
     const openProject = async () => {
       changeProjectsWrapper()
@@ -256,7 +308,12 @@ export default function Projects() {
       >
         <StyledArticle>
           <Images>
-            <Screenshot src={project.screenshot} alt="Project Screenshot" />
+            <Screenshot
+              src={project.smallscreenshot}
+              alt="Project Screenshot"
+              width={250}
+              height={400}
+            />
 
             <Logo src={project.urlLogo} alt={project.altLogo} />
           </Images>

@@ -35,7 +35,7 @@ export default function Bookisite() {
   return (
     <>
       <header className="booki_header">
-        <Link to={"/booki"}>
+        <Link to={"/project/booki"}>
           <img className="booki_image" src={Logo} alt="Logo Booki" />
         </Link>
         <nav className="booki_nav">

@@ -22,6 +22,11 @@ const Svg = styled.svg`
     bottom: -920px;
     left: 150px;
   }
+
+  @media (min-width: 992px) {
+    bottom: -930px;
+    left: 25px;
+  }
 `
 
 export default function SquareBrackets() {
