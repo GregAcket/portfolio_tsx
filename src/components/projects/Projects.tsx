@@ -128,7 +128,11 @@ export default function Projects() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(url)
+        const response = await fetch(url, {
+          headers: {
+            "Cache-Control": "public, max-age=3600",
+          },
+        })
         const DataJson = await response.json()
         setAllProjects(DataJson)
       } catch (err) {

@@ -32,6 +32,16 @@ const StyledSocials = styled.div`
   }
 `
 
+const Links = styled(Link)`
+  transition: border-bottom 400ms;
+
+  &:hover {
+    text-decoration: none;
+
+    border-bottom: 1px solid green;
+  }
+`
+
 export default function Footer() {
   const { theme } = useContext(ThemeContext)
 
@@ -41,27 +51,27 @@ export default function Footer() {
       <CampGround />
       <StyledFooter $isDarkMode={theme === "dark"}>
         <StyledSocials>
-          <Link
+          <Links
             reloadDocument
             to="#contact"
             aria-label="Lien vers la section contact"
           >
             <Mail />
-          </Link>
-          <Link
+          </Links>
+          <Links
             to="https://github.com/GregAcket"
             target="_blank"
             aria-label="Lien vers le site Github"
           >
             <Github />
-          </Link>
-          <Link
+          </Links>
+          <Links
             to="https://www.linkedin.com/in/gregory-a-187743115"
             target="_blank"
             aria-label="Lien vers le site LinkedIn"
           >
             <Linkedin />
-          </Link>
+          </Links>
         </StyledSocials>
       </StyledFooter>
     </>

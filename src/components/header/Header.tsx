@@ -62,7 +62,7 @@ const Li = styled.li<ThemeProps>`
   cursor: pointer;
   list-style: none;
   border-bottom: 1px solid transparent;
-  transition: all 500ms;
+  transition: all 400ms;
 
   &:hover {
     border-bottom: 1px solid green;

@@ -116,15 +116,13 @@ export default function Contact() {
   }
 
   //Validation regex
-
+  ;/^[a-zA-ZÉÈéèç/ñ\-\s]{2,}$/
   const regexNom = /^[a-zA-ZÉÈéèç/ñ\-\s]{2,}$/
   const regexMail = /^[a-zA-Z0-9.é_ñèç%+-]+@[a-zA-Z0-9ñ.-]+\.[a-zA-Zñ]{2,}$/
   const regexMessage = /^[a-zA-Z0-9,.'!?ÉÈéêèçà/ñ\-\s]{10,}$/
 
   const validateForm = () => {
     let newForm = form
-
-    console.log(form)
 
     if (regexNom.test(form.name.value)) {
       const newField = { value: form.name.value, isValid: true }
@@ -139,6 +137,7 @@ export default function Contact() {
       }
       newForm = { ...newForm, ...{ name: newField } }
     }
+    console.log(regexNom.test(form.name.value))
 
     if (regexMail.test(form.email.value)) {
       const newField = { value: form.email.value, isValid: true }
@@ -153,6 +152,7 @@ export default function Contact() {
       }
       newForm = { ...newForm, ...{ email: newField } }
     }
+    console.log(regexMail.test(form.email.value))
 
     if (regexMessage.test(form.message.value)) {
       const newField = { value: form.message.value, isValid: true }
@@ -167,6 +167,9 @@ export default function Contact() {
       }
       newForm = { ...newForm, ...{ message: newField } }
     }
+
+    console.log(regexMessage.test(form.message.value))
+
     console.log(newForm)
     setForm(newForm)
     console.log(form)
@@ -222,11 +225,11 @@ export default function Contact() {
         <StyledForm method="post" onSubmit={(e) => sendMail(e)}>
           <FormId>
             <FormField>
-              <label htmlFor="lastName">Votre nom</label>
+              <label htmlFor="name">Votre nom</label>
               <input
                 type="text"
-                name="lastName"
-                id="lastName"
+                name="name"
+                id="name"
                 onChange={(e) => handleChange(e)}
                 required
               />
