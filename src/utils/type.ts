@@ -14,6 +14,7 @@ export type StyleProjectProps = {
   $ColorUnderline?: string
   $isProjectsWrapperHidden?: boolean
   $isMasterWrapperShown?: boolean
+  $isIntersected?: boolean
 }
 
 export type Ohmyfood = {
@@ -47,4 +48,18 @@ export type KanapCart = {
   name: string
   price: number
   quantity: number
+}
+
+export type Project = {
+  id: number
+  altLogo: string
+  description: string
+  github: string
+  link: string
+  screenshot: string
+  smallscreenshot: string
+  techno: string[]
+  urlLogo: string
+  title: string
+  comment: string
 }

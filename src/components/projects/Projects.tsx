@@ -2,8 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { css, styled } from "styled-components"
 
 import { ThemeContext } from "../../utils/ThemeProvider"
-import { StyleProjectProps, ThemeProps } from "../../utils/type"
-import { Link, useNavigate } from "react-router-dom"
+import { Project, StyleProjectProps, ThemeProps } from "../../utils/type"
 
 import CurlyBrackets from "../../assets/CurlyBrackets"
 import SquareBrackets from "../../assets/SquareBrackets"
@@ -13,27 +12,22 @@ import { StateSingleProjectsContext } from "../../utils/StateSingleProjectProvid
 import Terminal from "../../assets/Terminal"
 import Code from "../../assets/Code"
 import RoundBrackets from "../../assets/RoundBrackets"
+import { SingleProject } from "./SingleProject"
 
-type Project = {
-  id: number
-  altLogo: string
-  description: string
-  github: string
-  link: string
-  screenshot: string
-  smallscreenshot: string
-  techno: string[]
-  urlLogo: string
-  title: string
-  comment: string
-}
-
-const ProjectSection = styled.section`
+const ProjectSection = styled.section<StyleProjectProps>`
   display: flex;
   flex-direction: column;
   max-width: 100vw;
   min-height: 450px;
   padding: 0px 15px;
+
+  opacity: 1;
+  transition: opacity 500ms;
+  ${({ $isProjectsWrapperHidden }) =>
+    $isProjectsWrapperHidden &&
+    css`
+      opacity: 0;
+    `};
 
   @media (min-width: 1180px) {
     margin: auto;
@@ -73,105 +67,6 @@ const ProjectsWrappers = styled.div`
       transform: translateY(0px);
     }
   }
-  }
-`
-
-// @media (min-width: 992px) {
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-template-rows: auto;
-//
-//   :nth-child(even) article {
-//     transform: translateY(0px);
-//   }
-
-const StyledArticle = styled.article`
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  margin: 50px 0px;
-  cursor: pointer;
-  opacity: 1;
-  @media (min-width: 768px) {
-    margin: 0;
-  }
-`
-
-const Images = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    min-height: 510px;
-  }
-`
-
-const Logo = styled.img`
-  max-height: 100px;
-  max-width: 100px;
-`
-
-const Screenshot = styled.img`
-  object-fit: cover;
-  height: 400px;
-  width: 250px;
-  margin-bottom: 10px;
-`
-
-const LogoUnderline = styled.div<StyleProjectProps>`
-  min-width: 40px;
-  height: 50px;
-  margin-right: 20px;
-  background: linear-gradient(
-    to left,
-    #ccc 50%,
-    ${({ $ColorUnderline }) => $ColorUnderline}
-  );
-  background-repeat: no-repeat;
-  background-size: 200% 3px;
-  background-position: left 8px;
-  transition: background-position ease-out 300ms;
-  @media (min-width: 768px) {
-    background-position: right 8px;
-    min-width: 80px;
-    align-self: ;
-    margin: 0px;
-  }
-`
-
-const Links = styled(Link)<StyleProjectProps>`
-  text-decoration: none;
-  opacity: 1;
-  transition: opacity 500ms;
-  ${({ $isProjectsWrapperHidden }) =>
-    $isProjectsWrapperHidden &&
-    css`
-      opacity: 0;
-    `};
-  @media (min-width: 768px) {
-    display: flex;
-  }
-`
-
-const Title = styled.div`
-  display: flex;
-  width: fit-content;
-  font-size: 16px;
-  font-weight: 200;
-  text-transform: uppercase;
-  @media (min-width: 768px) {
-    position: relative;
-    bottom: 100px;
-    left: 115px;
-    flex-direction: column-reverse;
-    align-items: end;
-  }
-`
-
-const Comment = styled.p<ThemeProps>`
-  max-width: 135px;
-  font-size: 15px;
-  color: ${({ $isDarkMode }) => ($isDarkMode ? "white" : "black")};
-  @media (min-width: 768px) {
-    text-align: right;
   }
 `
 
@@ -226,10 +121,6 @@ export default function Projects() {
     StateSingleProjectsContext
   )
 
-  // NAVIGATE
-
-  const navigate = useNavigate()
-
   // EFFECT
 
   const url = "https://realisations.greg-dev.com/realisations"
@@ -266,71 +157,13 @@ export default function Projects() {
     changeProjectsWrapper,
   ])
 
-  // LOGIC
-
-  const mappedProjects = allProjects.map((project) => {
-    // color needed for the underline
-
-    const colorArray = [
-      "#0065fc 50%",
-      "#9356dc 50%, #f576da",
-      "#f3976c 50%",
-      "#0a3b4d 50%",
-      "#ff6060 50%",
-    ]
-
-    /* The openProject function closes the projects section, wait for 600ms the time projects section fades-out, 
-    goes to the wanted address, scroll to the top of the opened project and finally makes him finally fades-in
-    */
-
-    const openProject = async () => {
-      changeProjectsWrapper()
-      await new Promise((resolve) => setTimeout(resolve, 600))
-      navigate("project" + project.link)
-      const target = document.getElementById("projects")
-      const scroll = () => {
-        target?.scrollIntoView()
-      }
-      setTimeout(() => {
-        scroll()
-      }, 100)
-      setTimeout(() => {
-        changeMasterWrapper()
-      }, 200)
-    }
-
-    return (
-      <Links
-        to="#"
-        key={project.id}
-        $isProjectsWrapperHidden={isProjectsWrapperHidden}
-        onClick={() => openProject()}
-      >
-        <StyledArticle>
-          <Images>
-            <Screenshot
-              src={project.smallscreenshot}
-              alt="Project Screenshot"
-              width={250}
-              height={400}
-            />
-
-            <Logo src={project.urlLogo} alt={project.altLogo} />
-          </Images>
-          <Title>
-            <LogoUnderline $ColorUnderline={colorArray[project.id]} />
-            <Comment $isDarkMode={theme === "dark"}>{project.comment}</Comment>
-          </Title>
-        </StyledArticle>
-      </Links>
-    )
-  })
-
-  let reversedProjects = mappedProjects.reverse()
+  let projects = allProjects
+    .map((project) => <SingleProject key={project.id} project={project} />)
+    .reverse()
 
   return (
     <>
-      <ProjectSection>
+      <ProjectSection $isProjectsWrapperHidden={isProjectsWrapperHidden}>
         <CurlyBrackets />
         <SquareBrackets />
         <Branch />
@@ -339,7 +172,7 @@ export default function Projects() {
         </TerminalWrapper>
         <Code />
         <RoundBrackets />
-        <ProjectsWrappers>{reversedProjects}</ProjectsWrappers>
+        <ProjectsWrappers>{projects}</ProjectsWrappers>
       </ProjectSection>
     </>
   )
