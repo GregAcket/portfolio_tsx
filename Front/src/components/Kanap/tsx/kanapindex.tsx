@@ -22,9 +22,11 @@ export default function Kanapindex() {
     fetchData()
   }, [url])
 
+  console.log(kanapData)
+
   const products = kanapData?.map((produit) => {
     return (
-      <Link to={"/project/kanap/product/" + produit.id} key={produit.id}>
+      <Link key={produit._id} to={"/project/kanap/product/" + produit._id}>
         <article>
           <img src={produit.imageUrl} alt={produit.altTxt} />
           <h3 className="productName">{produit.name}</h3>
